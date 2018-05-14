@@ -37,15 +37,15 @@
               (close! wait-timeout)
               (close! updates))
 
-          ::wait-timeout
-          (do (log/error "HTTP request timed out, stopping polling")
-              (close! running)
-              (close! updates))
+          ;::wait-timeout
+          ;(do (log/error "HTTP request timed out, stopping polling")
+          ;    (close! running)
+          ;    (close! updates))
 
-          ::api/error
-          (do (log/warn "Got error from Telegram API, stopping polling")
-              (close! running)
-              (close! updates))
+          ;::api/error
+          ;(do (log/warn "Got error from Telegram API, stopping polling")
+          ;    (close! running)
+          ;    (close! updates))
 
           (do (close! wait-timeout)
               (doseq [upd data] (>! updates upd))
